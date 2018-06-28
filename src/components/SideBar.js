@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from './Button';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 const SideBar = (props) => {
     return (
