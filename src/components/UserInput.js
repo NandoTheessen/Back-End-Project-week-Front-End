@@ -7,7 +7,6 @@ class InputComponent extends React.Component {
         super(props);
         this.state = {
             username: '',
-            race: '',
             password: ''
         };
     }
@@ -18,7 +17,7 @@ class InputComponent extends React.Component {
     }
     logIn = () => {
         return (
-            <Form inverted>
+            <Form inverted onSubmit={() => this.props.login({ username: this.state.username, password: this.state.password })} >
                 <h4>Please provide Username and Password</h4>
                 <Form.Field required>
                     <label htmlFor="username">Username</label>
@@ -34,7 +33,7 @@ class InputComponent extends React.Component {
     }
     signUp = () => {
         return (
-            <Form inverted>
+            <Form inverted onSubmit={() => this.props.register({ username: this.state.username, password: this.state.password })}>
                 <Form.Field required>
                     <label htmlFor="username">Username</label>
                     <input id="username" name="username" onChange={this.handleChange} value={this.state.username} />
