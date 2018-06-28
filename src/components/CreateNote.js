@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import Button from './Button';
+import './CreateNote.css';
 
 class CreateNote extends Component {
     constructor(props) {
@@ -12,23 +13,23 @@ class CreateNote extends Component {
     }
 
     onChange = (e) => {
-        this.setState(prevState => {
-            return {
-                [e.target.name]: e.target.value
-            }
+        this.setState({
+            [e.target.name]: e.target.value
         })
     }
 
     render() {
         var { id } = this.props.match.params
         return (
-            <div>
+            <div className='create-note'>
+
                 <input onChange={this.onChange} placeholder="Note Title" type="text" id="note-title" value={this.state.title} name="title" />
-                <textarea onChange={this.onChange} placeholder="Note Content" type="text" id="note-text" value={this.state.body} name="body" />
+                <textarea onChange={this.onChange} placeholder="Note Content" type="text" id="note-body" value={this.state.body} name="body" />
                 {this.props.page === 'update' ?
-                    <Button text='Update Note' class='createNote' onClick={() => this.props.updateNote()} /> :
-                    <Button text='Create Note' class='createNote' onClick={() => this.props.saveNote()} />
+                    <Button text='Update Note' class='createNote' function={() => this.props.function()} /> :
+                    <Button text='Create Note' class='createNote' function={() => this.props.function({ title: this.state.title, body: this.state.body })} />
                 }
+
             </div>
         );
     }

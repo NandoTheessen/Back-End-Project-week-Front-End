@@ -1,0 +1,19 @@
+.create-note {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-left: 3%;
+    padding-top: 8%;
+    padding-right: 5%;
+}
+
+#note-body {
+    max-width: 90%;
+    margin-bottom: 15px;
+    height: 40vh;
+}
+
+#note-title {
+    max-width: 60%;
+    margin-bottom: 15px;
+}

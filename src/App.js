@@ -59,20 +59,24 @@ class App extends Component {
   }
 
   saveNote = (note) => {
-    axios.post('https://notes-backend-nodejs.herokuapp.com/api/notes', note)
+    var newNote = {
+      ...note,
+      userid: this.state.userid
+    }
+    axios.post('https://notes-backend-nodejs.herokuapp.com/api/notes', newNote, { headers: { "authorization": localStorage.getItem('token') } })
       .then(note => {
         this.setState(prevState => {
           return {
-            notes: [...prevState.notes, note],
+            notes: [...prevState.notes, note.data],
             cache: [...prevState.notes, note]
           }
         })
-        this.propss.history.push('/notes')
+        this.props.history.push('/notes')
       })
-      .catch(err => console.log(err))
+      .catch(err => alert(err.message))
   }
   updateNote = (note) => {
-    axios.post('https://notes-backend-nodejs.herokuapp.com/api/notes', note)
+    axios.post('https://notes-backend-nodejs.herokuapp.com/api/notes', note, { headers: { "authorization": localStorage.getItem('token') } })
       .then(note => {
         this.setState(prevState => {
           return {
@@ -89,10 +93,10 @@ class App extends Component {
         <Route exact path='/' component={FirstView} />
         <Route exact path='/login' render={(props) => <Input {...props} login={this.login} page='login' />} />
         <Route exact path='/signup' render={(props) => <Input {...props} login={this.register} page='signup' />} />
-        <Route exact path='/notes' render={props => <Sidebar {...props} logout={this.logout} />} />
+        <Route path='/notes' render={props => <Sidebar {...props} loggedin={this.state.loggedin} logout={this.logout} />} />
         <Route exact path='/notes' render={(props) => <NoteList {...props} notes={this.state.notes} />} />
-        <Route exact path='/createNote' render={props => <CreateNote {...props} page='create' function={this.saveNote} />} />
-        <Route exact path='/updateNote' render={props => <CreateNote {...props} />} page='update' />
+        <Route exact path='/notes/create' render={props => <CreateNote {...props} page='create' function={this.saveNote} />} />
+        <Route exact path='/notes/update' render={props => <CreateNote {...props} />} page='update' function={this.updateNote} />
       </div>
     );
   }
