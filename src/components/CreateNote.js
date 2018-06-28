@@ -18,15 +18,16 @@ class CreateNote extends Component {
             }
         })
     }
+
     render() {
         var { id } = this.props.match.params
         return (
             <div>
                 <input onChange={this.onChange} placeholder="Note Title" type="text" id="note-title" value={this.state.title} name="title" />
                 <textarea onChange={this.onChange} placeholder="Note Content" type="text" id="note-text" value={this.state.body} name="body" />
-                {this.props.page === edit ?
-                    <Button text='Update Note' class='createNote' onClick={} /> :
-                    <Button text='Create Note' class='createNote' onClick={} />
+                {this.props.page === 'update' ?
+                    <Button text='Update Note' class='createNote' onClick={() => this.props.updateNote()} /> :
+                    <Button text='Create Note' class='createNote' onClick={() => this.props.saveNote()} />
                 }
             </div>
         );

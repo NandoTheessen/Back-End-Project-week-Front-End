@@ -5,6 +5,7 @@ import { Route, withRouter } from 'react-router';
 import Input from './components/UserInput';
 import NoteList from "./components/NoteList";
 import Sidebar from './components/SideBar';
+import CreateNote from './components/CreateNote';
 
 class App extends Component {
   constructor(props) {
@@ -57,6 +58,31 @@ class App extends Component {
     this.props.history.push('/')
   }
 
+  saveNote = (note) => {
+    axios.post('https://notes-backend-nodejs.herokuapp.com/api/notes', note)
+      .then(note => {
+        this.setState(prevState => {
+          return {
+            notes: [...prevState.notes, note],
+            cache: [...prevState.notes, note]
+          }
+        })
+        this.propss.history.push('/notes')
+      })
+      .catch(err => console.log(err))
+  }
+  updateNote = (note) => {
+    axios.post('https://notes-backend-nodejs.herokuapp.com/api/notes', note)
+      .then(note => {
+        this.setState(prevState => {
+          return {
+            notes: [...prevState.notes, note],
+            cache: [...prevState.notes, note]
+          }
+        })
+        this.propss.history.push('/notes')
+      })
+  }
   render() {
     return (
       <div className="App">
@@ -65,6 +91,8 @@ class App extends Component {
         <Route exact path='/signup' render={(props) => <Input {...props} login={this.register} page='signup' />} />
         <Route exact path='/notes' render={props => <Sidebar {...props} logout={this.logout} />} />
         <Route exact path='/notes' render={(props) => <NoteList {...props} notes={this.state.notes} />} />
+        <Route exact path='/createNote' render={props => <CreateNote {...props} page='create' function={this.saveNote} />} />
+        <Route exact path='/updateNote' render={props => <CreateNote {...props} />} page='update' />
       </div>
     );
   }
