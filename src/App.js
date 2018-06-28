@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import FirstView from './components/Firstview';
 import { Route, withRouter } from 'react-router';
-import Input from './components/Input';
+import Input from './components/UserInput';
 import NoteList from "./components/NoteList";
 import Sidebar from './components/SideBar';
 
