@@ -4,6 +4,7 @@ import FirstView from './components/Firstview';
 import { Route, withRouter } from 'react-router';
 import Input from './components/Input';
 import NoteList from "./components/NoteList";
+import Sidebar from './components/Sidebar';
 
 class App extends Component {
   constructor(props) {
@@ -45,6 +46,7 @@ class App extends Component {
       <div className="App">
         <Route exact path='/' component={FirstView} />
         <Route exact path='/login' render={(props) => <Input {...props} login={this.login} page='login' />} />
+        <Route exact path='/notes' component={Sidebar} />
         <Route exact path='/notes' render={(props) => <NoteList {...props} notes={this.state.notes} />} />
       </div>
     );
