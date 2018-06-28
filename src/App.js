@@ -20,22 +20,25 @@ class App extends Component {
     axios.post('https://notes-backend-nodejs.herokuapp.com/api/login', credentials)
       .then(data => {
         console.log(data);
-        this.setState((prevState, props) => {
-          return { notes: data.data.notes, loggedin: true, userid: data.data.userid }
+        this.setState((prevState) => {
+          return { ...prevState, notes: data.data.notes, loggedin: true, userid: data.data.userid, cache: data.data.notes }
         })
         localStorage.setItem('token', data.data.token)
         this.props.history.push('/notes')
       })
   }
+
   register = (newUser) => {
     axios.post('https://notes-backend-nodejs.herokuapp.com/api/register', newUser)
       .then(data => {
-        this.setState((prevState, props) => {
-          return { notes: data.notes, loggedin: true, userid: data.userid }
+        this.setState((prevState) => {
+          return { ...prevState, notes: data.data.notes, loggedin: true, userid: data.data.userid, cache: data.data.notes }
         })
         localStorage.setItem('token', data.data.token)
+        this.props.history.push('/notes')
       })
   }
+
   fetchCache = (uid) => {
     axios.post('https://notes-backend-nodejs.herokuapp.com/api/notes/all', uid)
       .then(notes => this.setState(prevState => {
@@ -45,18 +48,21 @@ class App extends Component {
         }
       }))
   }
+
   logout = () => {
     localStorage.clear()
     this.setState((prevState) => {
       return { loggedin: false, userid: '', notes: [] }
     })
+    this.props.history.push('/')
   }
+
   render() {
     return (
       <div className="App">
         <Route exact path='/' component={FirstView} />
         <Route exact path='/login' render={(props) => <Input {...props} login={this.login} page='login' />} />
-        <Route exact path='/notes' component={Sidebar} />
+        <Route exact path='/notes' render={props => <Sidebar logout={this.logout} />} />
         <Route exact path='/notes' render={(props) => <NoteList {...props} notes={this.state.notes} />} />
       </div>
     );
