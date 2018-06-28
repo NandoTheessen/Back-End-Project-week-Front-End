@@ -4,12 +4,13 @@ import FirstView from './components/Firstview';
 import { Route, withRouter } from 'react-router';
 import Input from './components/Input';
 import NoteList from "./components/NoteList";
-import Sidebar from './components/Sidebar';
+import Sidebar from './components/SideBar';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      cache: [],
       notes: [],
       userid: '',
       loggedin: false
@@ -34,6 +35,15 @@ class App extends Component {
         })
         localStorage.setItem('token', data.data.token)
       })
+  }
+  fetchCache = (uid) => {
+    axios.post('https://notes-backend-nodejs.herokuapp.com/api/notes/all', uid)
+      .then(notes => this.setState(prevState => {
+        return {
+          ...prevState,
+          cache: notes.data
+        }
+      }))
   }
   logout = () => {
     localStorage.clear()
