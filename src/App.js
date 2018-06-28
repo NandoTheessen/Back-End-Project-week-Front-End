@@ -62,7 +62,8 @@ class App extends Component {
       <div className="App">
         <Route exact path='/' component={FirstView} />
         <Route exact path='/login' render={(props) => <Input {...props} login={this.login} page='login' />} />
-        <Route exact path='/notes' render={props => <Sidebar logout={this.logout} />} />
+        <Route exact path='/signup' render={(props) => <Input {...props} login={this.register} page='signup' />} />
+        <Route exact path='/notes' render={props => <Sidebar {...props} logout={this.logout} />} />
         <Route exact path='/notes' render={(props) => <NoteList {...props} notes={this.state.notes} />} />
       </div>
     );
