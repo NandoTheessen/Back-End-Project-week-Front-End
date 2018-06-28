@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from './Button';
 import { Link } from 'react-router-dom';
+import './SideBar.css'
 
 const SideBar = (props) => {
     if (props.loggedin === false) props.history.push('/')
@@ -9,7 +10,7 @@ const SideBar = (props) => {
             <h1>Easy Notes</h1>
             <p>Welcome Back!</p>
             <Link to='/notes/create'><Button text='+' class='addNote' /></Link>
-            <Button text='LogOut' function={props.logout} />
+            <Button text='LogOut' class='logout' function={props.logout} />
         </div>
     );
 };

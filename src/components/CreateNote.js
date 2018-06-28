@@ -26,7 +26,7 @@ class CreateNote extends Component {
                 <input onChange={this.onChange} placeholder="Note Title" type="text" id="note-title" value={this.state.title} name="title" />
                 <textarea onChange={this.onChange} placeholder="Note Content" type="text" id="note-body" value={this.state.body} name="body" />
                 {this.props.page === 'update' ?
-                    <Button text='Update Note' class='createNote' function={() => this.props.function()} /> :
+                    <Button text='Update Note' class='createNote' function={() => this.props.function({ title: this.state.title, body: this.state.body, id: id })} /> :
                     <Button text='Create Note' class='createNote' function={() => this.props.function({ title: this.state.title, body: this.state.body })} />
                 }
 

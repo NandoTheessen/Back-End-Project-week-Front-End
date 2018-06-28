@@ -1,0 +1,33 @@
+.sidebar {
+    height: 100vh;
+    width: 230px;
+    min-width: 200px;
+    background: rgb(139, 133, 133);
+    /* background-image: linear-gradient(to bottom, rgb(179, 174, 174) 0%, rgb(75, 66, 66) 70%); */
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    color: white;
+    box-sizing: border-box;
+}
+
+.sidebar p {
+    font-weight: bold;
+    margin: 10px auto;
+}
+
+.sidebar h1 {
+    align-self: center;
+}
+
+.addNote {
+    background: greenyellow;
+    color: black;
+    margin-left: 30%;
+}
+
+.logout {
+    position: absolute;
+    bottom: 10px;
+    left: 60px;
+}
