@@ -5,7 +5,6 @@ import {
 import './NoteList.css'
 
 const NoteList = (props) => {
-    console.log("notelist props", props);
     return (
         <div className='notes-wrapper'>
             {props.notes.map(e => {

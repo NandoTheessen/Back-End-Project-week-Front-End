@@ -15,8 +15,6 @@
     margin-top: 20px;
     width: 10%;
     min-width: 55px;
-    top: 15px;
-    right: 12%;
     border: 1px solid #979797;
     height: 30px;
     background: #2BC1C4;
@@ -68,4 +66,17 @@
 .delete-modal {
     background: #D0021B;
     color: white;
+}
+
+.edit {
+    margin-right: 10px;
+}
+
+.clone {
+    margin-top: 20px;
+    width: 10%;
+    min-width: 55px;
+    border: 1px solid #979797;
+    height: 30px;
+    font-size: 0.7rem;
 }

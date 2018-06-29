@@ -29,7 +29,7 @@ class App extends Component {
         <Route path='/notes' render={props => <Sidebar {...props} loggedin={this.state.loggedin} logout={this.logout} />} />
         <Route path='/note' render={props => <Sidebar {...props} loggedin={this.state.loggedin} logout={this.logout} />} />
         <Route exact path='/notes' render={(props) => <NoteList {...props} delete={this.deleteNote} notes={this.state.notes} choseNote={this.displayNote} />} />
-        <Route exact path='/notes/:id' render={props => <Note {...props} note={this.state.note} update={this.updateNote} delete={this.deleteNote} />} />
+        <Route exact path='/notes/:id' render={props => <Note {...props} note={this.state.note} update={this.updateNote} delete={this.deleteNote} clone={this.cloneNote} />} />
         <Route exact path='/note/create' render={props => <CreateNote {...props} page='create' function={this.saveNote} />} />
         <Route exact path='/note/edit' render={props => <CreateNote {...props} page='update' note={this.state.note} function={this.updateNote} />} />
       </div>
@@ -43,10 +43,8 @@ class App extends Component {
     })
   }
   conitnuusLogin = () => {
-    console.log("fire login");
     let token = localStorage.getItem('token')
     let user = localStorage.getItem('userid')
-    console.log(user);
     if (token && user) {
       this.setState({ loggedin: true, userid: user })
       this.fetchCache(user)
@@ -57,7 +55,6 @@ class App extends Component {
   login = (credentials) => {
     axios.post('https://notes-backend-nodejs.herokuapp.com/api/login', credentials)
       .then(data => {
-        console.log(data);
         this.setState((prevState) => {
           return { ...prevState, notes: data.data.notes, loggedin: true, userid: data.data.userid, cache: data.data.notes }
         })
@@ -72,6 +69,7 @@ class App extends Component {
       return { ...prevState, loggedin: true }
     })
   }
+
   register = (newUser) => {
     axios.post('https://notes-backend-nodejs.herokuapp.com/api/register', newUser)
       .then(data => {
@@ -89,7 +87,6 @@ class App extends Component {
   fetchCache = (uid) => {
     axios.post('https://notes-backend-nodejs.herokuapp.com/api/notes/all', { userid: uid }, { headers: { "authorization": localStorage.getItem('token') } })
       .then(notes => this.setState(prevState => {
-        console.log(notes);
         return {
           ...prevState,
           cache: notes.data,
@@ -139,9 +136,23 @@ class App extends Component {
       .catch(err => console.log(err))
   }
 
+  cloneNote = (note) => {
+    axios.post('https://notes-backend-nodejs.herokuapp.com/api/notes', note, { headers: { "authorization": localStorage.getItem('token') } })
+    this.setState(prevState => {
+      return {
+        notes: [...prevState.notes, note],
+        cache: [...prevState.notes, note]
+      }
+    })
+    this.props.history.push('/notes')
+  }
+
   deleteNote = (id) => {
     axios.delete(`https://notes-backend-nodejs.herokuapp.com/api/notes/${id}`, { headers: { "authorization": localStorage.getItem('token') } })
-      .then(note => this.fetchCache(this.state.userid))
+      .then(note => {
+        this.fetchCache(this.state.userid)
+        this.props.history.push('/notes')
+      })
       .catch(err => alert(err))
   }
 
