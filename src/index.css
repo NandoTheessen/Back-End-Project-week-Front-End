@@ -14,15 +14,6 @@ body {
   display: flex;
 }
 
-.form {
-  max-width: 350px;
-  width: 280px;
-  position: relative;
-  margin: 30px auto;
-  text-align: center;
-  padding-top: 25vh;
-}
-
 button {
   background: rgb(119, 111, 111);
   border: 1px solid rgba(0, 0, 0, 0.2);

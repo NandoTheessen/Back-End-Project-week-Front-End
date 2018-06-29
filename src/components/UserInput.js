@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from './Button'
 import { Form } from 'semantic-ui-react'
+import './UserInput.css'
 
 class InputComponent extends React.Component {
     constructor(props) {
@@ -18,16 +19,16 @@ class InputComponent extends React.Component {
     logIn = () => {
         return (
             <Form inverted onSubmit={() => this.props.login({ username: this.state.username, password: this.state.password })} >
-                <h4>Please provide Username and Password</h4>
+                <h4>Please provide your Username and Password</h4>
                 <Form.Field required>
                     <label htmlFor="username">Username</label>
                     <input id="username" name="username" onChange={this.handleChange} value={this.state.username} />
                 </Form.Field>
                 <Form.Field required>
                     <label htmlFor="password">Password</label>
-                    <input type="text" id="password" name="password" onChange={this.handleChange} value={this.state.password} />
+                    <input type="password" id="password" name="password" onChange={this.handleChange} value={this.state.password} />
                 </Form.Field>
-                <Button text="Login" function={() => this.props.login({ username: this.state.username, password: this.state.password })} />
+                <Button text="Login" class='login' function={() => this.props.login({ username: this.state.username, password: this.state.password })} />
             </Form>
         )
     }
@@ -42,13 +43,13 @@ class InputComponent extends React.Component {
                     <label htmlFor="password">Password</label>
                     <input type="text" id="password" name="password" onChange={this.handleChange} value={this.state.password} />
                 </Form.Field>
-                <Button text="Register" function={() => this.props.register({ username: this.state.username, password: this.state.password })} />
+                <Button text="Register" class='login' function={() => this.props.register({ username: this.state.username, password: this.state.password })} />
             </Form>
         );
     }
     render() {
         return (
-            <div>
+            <div className='login-form'>
                 {this.props.page === "register" ? this.signUp() : this.logIn()}
             </div>
         );
