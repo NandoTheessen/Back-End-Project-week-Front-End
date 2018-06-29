@@ -1,13 +1,11 @@
 import React from 'react';
 import {
-    Card, CardText, CardBody,
-    CardTitle
+    Card, CardText, CardBody
 } from 'reactstrap';
 import './NoteList.css'
-import Button from '../Button/Button';
-import { Link } from 'react-router-dom'
 
 const NoteList = (props) => {
+    console.log("notelist props", props);
     return (
         <div className='notes-wrapper'>
             {props.notes.map(e => {
@@ -16,9 +14,8 @@ const NoteList = (props) => {
                         props.choseNote(e._id)
                         props.history.push(`/notes/${e._id}`)
                     }}>
-                        <Button text='X' function={() => props.delete(e._id)} class='delete-button' />
                         <CardBody>
-                            <CardTitle>{e.title}</CardTitle>
+                            <h6 className='card-title'>{e.title}</h6>
                             <CardText>{e.body}</CardText>
                         </CardBody>
                     </Card>

@@ -22,8 +22,10 @@ class Note extends Component {
         return (
             <div className="note-view">
                 <Button text='delete' class='delete' function={() => this.toggle()} />
+
                 <h4>{this.props.note.title}</h4>
                 <div className="note-body">{this.props.note.body}</div>
+                <Button text='edit' class='edit' function={() => this.props.history.push('/note/edit')} />
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                     <ModalBody>
                         <h6>Are you sure you want to delete this?</h6>

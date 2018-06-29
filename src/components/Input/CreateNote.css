@@ -17,3 +17,10 @@
     max-width: 60%;
     margin-bottom: 15px;
 }
+
+.createNote {
+    width: 120px;
+    font-size: 0.9rem;
+    background: #2BC1C4;
+    color: black;
+}

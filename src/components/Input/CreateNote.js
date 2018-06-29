@@ -12,26 +12,33 @@ class CreateNote extends Component {
         }
     }
 
-    onChange = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value
-        })
-    }
-
     render() {
-        var { id } = this.props.match.params
+        if (this.props.note) {
+            console.log("note", this.props.note);
+            var id = this.props.note._id
+        }
         return (
             <div className='create-note'>
 
                 <input onChange={this.onChange} placeholder="Note Title" type="text" id="note-title" value={this.state.title} name="title" />
                 <textarea onChange={this.onChange} placeholder="Note Content" type="text" id="note-body" value={this.state.body} name="body" />
                 {this.props.page === 'update' ?
-                    <Button text='Update Note' class='createNote' function={() => this.props.function({ title: this.state.title, body: this.state.body, id: id })} /> :
-                    <Button text='Create Note' class='createNote' function={() => this.props.function({ title: this.state.title, body: this.state.body })} />
+                    (<Button text='Update Note' class='createNote' function={() => this.props.function({ title: this.state.title, body: this.state.body, id: id })} />) :
+                    (<Button text='Create Note' class='createNote' function={() => this.props.function({ title: this.state.title, body: this.state.body })} />)
                 }
 
             </div>
         );
+    }
+
+    componentDidMount = () => {
+        if (this.props.note) this.setState(() => { return { title: this.props.note.title, body: this.props.note.body } })
+    }
+
+    onChange = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
     }
 }
 

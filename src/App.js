@@ -27,10 +27,11 @@ class App extends Component {
         <Route exact path='/login' render={(props) => <Input {...props} login={this.login} page='login' />} />
         <Route exact path='/signup' render={(props) => <Input {...props} register={this.register} page='register' />} />
         <Route path='/notes' render={props => <Sidebar {...props} loggedin={this.state.loggedin} logout={this.logout} />} />
+        <Route path='/note' render={props => <Sidebar {...props} loggedin={this.state.loggedin} logout={this.logout} />} />
         <Route exact path='/notes' render={(props) => <NoteList {...props} delete={this.deleteNote} notes={this.state.notes} choseNote={this.displayNote} />} />
-        <Route exact path='/notes/create' render={props => <CreateNote {...props} page='create' function={this.saveNote} />} />
-        <Route exact path='/notes/update' render={props => <CreateNote {...props} />} page='update' function={this.updateNote} />
         <Route exact path='/notes/:id' render={props => <Note {...props} note={this.state.note} update={this.updateNote} delete={this.deleteNote} />} />
+        <Route exact path='/note/create' render={props => <CreateNote {...props} page='create' function={this.saveNote} />} />
+        <Route exact path='/note/edit' render={props => <CreateNote {...props} page='update' note={this.state.note} function={this.updateNote} />} />
       </div>
     );
   }
@@ -80,6 +81,9 @@ class App extends Component {
         localStorage.setItem('token', data.data.token)
         this.props.history.push('/notes')
       })
+      .catch(err => this.setState(() => {
+        return { error: err.message }
+      }))
   }
 
   fetchCache = (uid) => {
@@ -120,17 +124,19 @@ class App extends Component {
       .catch(err => alert(err.message))
   }
 
-  updateNote = () => {
-    axios.post('https://notes-backend-nodejs.herokuapp.com/api/notes', this.state.note, { headers: { "authorization": localStorage.getItem('token') } })
+  updateNote = (updatedNote) => {
+    axios.put('https://notes-backend-nodejs.herokuapp.com/api/notes', { ...updatedNote }, { headers: { "authorization": localStorage.getItem('token') } })
       .then(note => {
+        let newState = this.state.notes.filter(e => e._id !== updatedNote.id)
         this.setState(prevState => {
           return {
-            notes: [...prevState.notes, note],
-            cache: [...prevState.notes, note]
+            notes: [...newState, note.data],
+            cache: [...newState, note.data]
           }
         })
         this.props.history.push('/notes')
       })
+      .catch(err => console.log(err))
   }
 
   deleteNote = (id) => {

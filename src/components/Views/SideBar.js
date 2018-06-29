@@ -9,7 +9,7 @@ const SideBar = (props) => {
         <div className='sidebar'>
             <h3>Easy Notes</h3>
             <p>Welcome Back!</p>
-            <Link to='/notes/create'><Button text='+' class='addNote' /></Link>
+            <Link to='/note/create'><Button text='+' class='addNote' /></Link>
             <Button text='LogOut' class='logout' function={props.logout} />
         </div>
     );
