@@ -137,14 +137,21 @@ class App extends Component {
   }
 
   cloneNote = (note) => {
-    axios.post('https://notes-backend-nodejs.herokuapp.com/api/notes', note, { headers: { "authorization": localStorage.getItem('token') } })
-    this.setState(prevState => {
-      return {
-        notes: [...prevState.notes, note],
-        cache: [...prevState.notes, note]
-      }
-    })
-    this.props.history.push('/notes')
+    var newNote = {
+      ...note,
+      userid: this.state.userid
+    }
+    axios.post('https://notes-backend-nodejs.herokuapp.com/api/notes', newNote, { headers: { "authorization": localStorage.getItem('token') } })
+      .then(note => {
+        this.setState(prevState => {
+          return {
+            notes: [...prevState.notes, note],
+            cache: [...prevState.notes, note]
+          }
+        })
+        this.props.history.push('/notes')
+      })
+      .catch(err => console.log(err))
   }
 
   deleteNote = (id) => {
