@@ -7,7 +7,7 @@ const SideBar = (props) => {
     if (props.loggedin === false) props.history.push('/')
     return (
         <div className='sidebar'>
-            <h1>Easy Notes</h1>
+            <h3>Easy Notes</h3>
             <p>Welcome Back!</p>
             <Link to='/notes/create'><Button text='+' class='addNote' /></Link>
             <Button text='LogOut' class='logout' function={props.logout} />

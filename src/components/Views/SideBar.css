@@ -2,13 +2,14 @@
     height: 100vh;
     width: 230px;
     min-width: 200px;
-    background: rgb(139, 133, 133);
+    background: rgb(119, 113, 113);
     /* background-image: linear-gradient(to bottom, rgb(179, 174, 174) 0%, rgb(75, 66, 66) 70%); */
     display: flex;
     flex-direction: column;
     position: relative;
     color: white;
     box-sizing: border-box;
+    background-image: url('../../footer_lodyas.jpg');
 }
 
 .sidebar p {
@@ -16,20 +17,25 @@
     margin: 10px auto;
 }
 
-.sidebar h1 {
-    align-self: center;
+.sidebar h3 {
+    margin-top: 15px;
+    margin-left: 10px;
+}
+
+a {
+    margin: 0 auto;
 }
 
 .addNote {
     background: greenyellow;
     color: black;
-    margin-left: 30%;
+    margin: 0 auto;
 }
 
 .logout {
     position: absolute;
     bottom: 10px;
-    left: 60px;
-    background: lightcoral;
-    color: black;
+    left: 50px;
+    background: #D0021B;
+    color: white;
 }

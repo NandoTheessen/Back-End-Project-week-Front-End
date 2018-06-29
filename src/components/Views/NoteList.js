@@ -5,14 +5,17 @@ import {
 } from 'reactstrap';
 import './NoteList.css'
 import Button from '../Button/Button';
+import { Link } from 'react-router-dom'
 
 const NoteList = (props) => {
     return (
         <div className='notes-wrapper'>
             {props.notes.map(e => {
-                console.log(e);
                 return (
-                    <Card key={e._id}>
+                    <Card key={e._id} onClick={() => {
+                        props.choseNote(e._id)
+                        props.history.push(`/notes/${e._id}`)
+                    }}>
                         <Button text='X' function={() => props.delete(e._id)} class='delete-button' />
                         <CardBody>
                             <CardTitle>{e.title}</CardTitle>
