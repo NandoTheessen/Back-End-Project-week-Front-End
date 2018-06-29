@@ -2,9 +2,10 @@
     position: relative;
     background: rgb(156, 144, 144);
     box-shadow: 10px 10px #000;
-    height: 28vh;
+    height: 29vh;
     max-width: 400px;
     width: 185px;
+    background-image: url('../../footer_lodyas.jpg');
 }
 
 .delete-button {
@@ -13,9 +14,10 @@
     position: absolute;
     top: 0px;
     right: 10px;
-    background: rgb(156, 144, 144);
+    background: rgba(156, 144, 144, 0);
     border: 0px;
     color: #D0021B;
+    font-weight: bold;
 }
 
 .delete-button:focus {
