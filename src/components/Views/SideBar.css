@@ -30,4 +30,6 @@
     position: absolute;
     bottom: 10px;
     left: 60px;
+    background: lightcoral;
+    color: black;
 }

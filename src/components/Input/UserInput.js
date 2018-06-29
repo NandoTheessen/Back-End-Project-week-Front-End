@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from './Button'
+import Button from '../Button/Button'
 import { Form } from 'semantic-ui-react'
 import './UserInput.css'
 
@@ -11,11 +11,21 @@ class InputComponent extends React.Component {
             password: ''
         };
     }
+
+    render() {
+        return (
+            <div className='login-form'>
+                {this.props.page === "register" ? this.signUp() : this.logIn()}
+            </div>
+        );
+    }
+
     handleChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
         })
     }
+
     logIn = () => {
         return (
             <Form inverted onSubmit={() => this.props.login({ username: this.state.username, password: this.state.password })} >
@@ -32,6 +42,7 @@ class InputComponent extends React.Component {
             </Form>
         )
     }
+
     signUp = () => {
         return (
             <Form inverted onSubmit={() => this.props.register({ username: this.state.username, password: this.state.password })}>
@@ -45,13 +56,6 @@ class InputComponent extends React.Component {
                 </Form.Field>
                 <Button text="Register" class='login' function={() => this.props.register({ username: this.state.username, password: this.state.password })} />
             </Form>
-        );
-    }
-    render() {
-        return (
-            <div className='login-form'>
-                {this.props.page === "register" ? this.signUp() : this.logIn()}
-            </div>
         );
     }
 }

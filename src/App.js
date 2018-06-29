@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-import FirstView from './components/Firstview';
+import FirstView from './components/Views/WelcomeScreen';
 import { Route, withRouter } from 'react-router';
-import Input from './components/UserInput';
-import NoteList from "./components/NoteList";
-import Sidebar from './components/SideBar';
-import CreateNote from './components/CreateNote';
+import Input from './components/Input/UserInput';
+import NoteList from "./components/Views/NoteList";
+import Sidebar from './components/Views/SideBar';
+import CreateNote from './components/Input/CreateNote';
 
 class App extends Component {
   constructor(props) {

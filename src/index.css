@@ -37,6 +37,7 @@ button {
 #login {
   background: lightgreen;
   color: black;
+  margin-right: 10px;
 }
 
 .label {
@@ -48,11 +49,4 @@ button {
   margin: 50px auto;
   text-align: center;
   width: 80%;
-}
-
-#logout {
-  position: absolute;
-  top: 5px;
-  right: 0px;
-  background: lightcoral;
 }

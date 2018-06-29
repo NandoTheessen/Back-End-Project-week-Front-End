@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
-import Button from './Button';
+import Button from '../Button/Button';
 import './CreateNote.css';
 
 class CreateNote extends Component {

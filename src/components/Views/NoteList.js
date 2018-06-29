@@ -4,7 +4,7 @@ import {
     CardTitle
 } from 'reactstrap';
 import './NoteList.css'
-import Button from './Button';
+import Button from '../Button/Button';
 
 const NoteList = (props) => {
     return (
