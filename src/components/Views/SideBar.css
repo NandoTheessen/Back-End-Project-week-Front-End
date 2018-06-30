@@ -31,6 +31,7 @@ a {
     background: #2BC1C4;
     color: black;
     margin: 0 auto;
+    margin-top: 15px;
 }
 
 .logout {
@@ -39,4 +40,8 @@ a {
     left: 50px;
     background: #D0021B;
     color: white;
+}
+
+.notes {
+    margin-top: 15px;
 }

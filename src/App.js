@@ -26,12 +26,14 @@ class App extends Component {
         <Route exact path='/' component={FirstView} />
         <Route exact path='/login' render={(props) => <Input {...props} login={this.login} page='login' />} />
         <Route exact path='/signup' render={(props) => <Input {...props} register={this.register} page='register' />} />
-        <Route path='/notes' render={props => <Sidebar {...props} loggedin={this.state.loggedin} logout={this.logout} />} />
-        <Route path='/note' render={props => <Sidebar {...props} loggedin={this.state.loggedin} logout={this.logout} />} />
-        <Route exact path='/notes' render={(props) => <NoteList {...props} delete={this.deleteNote} notes={this.state.notes} choseNote={this.displayNote} />} />
-        <Route exact path='/notes/:id' render={props => <Note {...props} note={this.state.note} update={this.updateNote} delete={this.deleteNote} clone={this.cloneNote} />} />
-        <Route exact path='/note/create' render={props => <CreateNote {...props} page='create' function={this.saveNote} />} />
-        <Route exact path='/note/edit' render={props => <CreateNote {...props} page='update' note={this.state.note} function={this.updateNote} />} />
+        <div className="content">
+          <Route path='/notes' render={props => <Sidebar {...props} loggedin={this.state.loggedin} logout={this.logout} />} />
+          <Route path='/note' render={props => <Sidebar {...props} loggedin={this.state.loggedin} logout={this.logout} />} />
+          <Route exact path='/notes' render={(props) => <NoteList {...props} delete={this.deleteNote} notes={this.state.notes} choseNote={this.displayNote} />} />
+          <Route exact path='/notes/:id' render={props => <Note {...props} note={this.state.note} update={this.updateNote} delete={this.deleteNote} clone={this.cloneNote} />} />
+          <Route exact path='/note/create' render={props => <CreateNote {...props} page='create' function={this.saveNote} />} />
+          <Route exact path='/note/edit' render={props => <CreateNote {...props} page='update' note={this.state.note} function={this.updateNote} />} />
+        </div>
       </div>
     );
   }
@@ -42,6 +44,7 @@ class App extends Component {
       return { note: note }
     })
   }
+
   conitnuusLogin = () => {
     let token = localStorage.getItem('token')
     let user = localStorage.getItem('userid')

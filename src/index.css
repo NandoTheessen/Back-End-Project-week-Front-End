@@ -51,3 +51,21 @@ button {
   text-align: center;
   width: 80%;
 }
+
+.content {
+  display: flex;
+  width: 100%;
+}
+
+@media(min-width: 1100px) {
+  .content {
+    margin: 0 auto;
+    max-width: 1100px;
+    background-image: url('./22237-grey-wallpapers-1920x1200-tablet.jpg');
+    border-right: 2px solid black;
+    border-left: 2px solid black;
+  }
+  body {
+    background-image: url('./footer_lodyas.png');
+  }
+}

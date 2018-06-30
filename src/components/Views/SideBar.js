@@ -10,6 +10,7 @@ const SideBar = (props) => {
             <h3>Easy Notes</h3>
             <p>Welcome Back!</p>
             <Link to='/note/create'><Button text='+' class='addNote' /></Link>
+            <Link to='/notes'><Button text='Notes' class='addNote notes' /></Link>
             <Button text='LogOut' class='logout' function={props.logout} />
         </div>
     );
