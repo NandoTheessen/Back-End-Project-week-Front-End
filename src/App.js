@@ -141,15 +141,17 @@ class App extends Component {
 
   cloneNote = (note) => {
     var newNote = {
-      ...note,
+      title: note.title,
+      body: note.body,
       userid: this.state.userid
     }
     axios.post('https://notes-backend-nodejs.herokuapp.com/api/notes', newNote, { headers: { "authorization": localStorage.getItem('token') } })
-      .then(note => {
+      .then(response => {
+        console.log(note);
         this.setState(prevState => {
           return {
-            notes: [...prevState.notes, note],
-            cache: [...prevState.notes, note]
+            notes: [...prevState.notes, response.data],
+            cache: [...prevState.notes, response.data]
           }
         })
         this.props.history.push('/notes')
