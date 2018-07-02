@@ -14,11 +14,10 @@ class NoteList extends Component {
     }
 
     render() {
-        const filteredNotes = this.props.notes.filter(e => {
-            if (e.title.includes(this.state.searchterm) || e.body.includes(this.state.searchterm)) return e
-        })
+        let regex = new RegExp(this.state.searchterm, 'gi')
+        const filteredNotes = this.props.notes.filter(e => e.title.match(regex) || e.body.match(regex))
         return (
-            <div className='notes-wrapper'>
+            <div className='notes-wrapper' >
                 <input id='searchbox' type="text" placeholder='Looking for something?' value={this.state.searchterm} onChange={this.onChange} />
                 {filteredNotes.map(e => {
                     return (
@@ -33,7 +32,7 @@ class NoteList extends Component {
                         </Card>
                     );
                 })}
-            </div>
+            </div >
         );
     }
 
