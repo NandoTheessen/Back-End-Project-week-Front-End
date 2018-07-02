@@ -2,11 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import FirstView from './components/Views/WelcomeScreen';
 import { Route, withRouter } from 'react-router';
+import Content from './components/Content';
 import Input from './components/Input/UserInput';
-import NoteList from "./components/Views/NoteList";
-import Sidebar from './components/Views/SideBar';
-import CreateNote from './components/Input/CreateNote';
-import Note from './components/Views/Note';
 
 class App extends Component {
   constructor(props) {
@@ -26,14 +23,7 @@ class App extends Component {
         <Route exact path='/' component={FirstView} />
         <Route exact path='/login' render={(props) => <Input {...props} login={this.login} page='login' />} />
         <Route exact path='/signup' render={(props) => <Input {...props} register={this.register} page='register' />} />
-        <div className="content">
-          <Route path='/notes' render={props => <Sidebar {...props} loggedin={this.state.loggedin} logout={this.logout} />} />
-          <Route path='/note' render={props => <Sidebar {...props} loggedin={this.state.loggedin} logout={this.logout} />} />
-          <Route exact path='/notes' render={(props) => <NoteList {...props} delete={this.deleteNote} notes={this.state.notes} choseNote={this.displayNote} />} />
-          <Route exact path='/notes/:id' render={props => <Note {...props} note={this.state.note} update={this.updateNote} delete={this.deleteNote} clone={this.cloneNote} />} />
-          <Route exact path='/note/create' render={props => <CreateNote {...props} page='create' function={this.saveNote} />} />
-          <Route exact path='/note/edit' render={props => <CreateNote {...props} page='update' note={this.state.note} function={this.updateNote} />} />
-        </div>
+        <Route path='/(notes|note)' render={(props) => <Content {...props} loggedin={this.state.loggedin} logout={this.logout} deleteNote={this.deleteNote} notes={this.state.notes} choseNote={this.displayNote} note={this.state.note} cloneNote={this.cloneNote} saveNote={this.saveNote} updateNote={this.updateNote} />} />
       </div>
     );
   }
