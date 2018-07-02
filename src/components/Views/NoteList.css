@@ -45,10 +45,19 @@
 .notes-wrapper {
     width: 100%;
     padding: 20px;
+    padding-top: 40px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     flex-wrap: wrap;
     background-image: url('../../22237-grey-wallpapers-1920x1200-tablet.jpg');
     background-size: cover;
     /* background-image: linear-gradient(120deg, rgb(179, 174, 174) 0%, rgb(75, 66, 66) 40%); */
+}
+
+#searchbox {
+    position: absolute;
+    height: 20px;
+    top: 5px;
+    font-size: 0.6rem;
+    width: 10%;
 }
