@@ -15,7 +15,7 @@ class NoteList extends Component {
 
     render() {
         let regex = new RegExp(this.state.searchterm, 'gi')
-        const filteredNotes = this.props.notes.filter(e => e.title.match(regex) || e.body.match(regex))
+        const filteredNotes = this.props.notes.filter(e => regex.test(e.title) || regex.test(e.body))
         return (
             <div className='notes-wrapper' >
                 <input id='searchbox' type="text" placeholder='Looking for something?' value={this.state.searchterm} onChange={this.onChange} />
