@@ -56,8 +56,8 @@ class InputComponent extends React.Component {
                     <input type="password" id="password" name="password" onChange={this.handleChange} value={this.state.password} />
                 </Form.Field>
                 <Form.Field required>
-                    <label htmlFor="password">Repeat Password</label>
-                    <input type="password" id="password" name="repPassword" onChange={this.handleChange} value={this.state.repPassword} />
+                    <label htmlFor="repPassword">Repeat Password</label>
+                    <input type="password" id="repPassword" name="repPassword" onChange={this.handleChange} value={this.state.repPassword} />
                     {this.state.password !== this.state.repPassword ? <p>Passwords don't match</p> : null}
                 </Form.Field>
                 <Button text="Register" class='login' function={() => this.props.register({ username: this.state.username, password: this.state.password })} />
