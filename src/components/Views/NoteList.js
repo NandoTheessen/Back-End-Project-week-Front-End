@@ -19,8 +19,7 @@ class NoteList extends Component {
         return (
             <div className='notes-wrapper' >
                 <input id='searchbox' type="text" placeholder='Looking for something?' value={this.state.searchterm} onChange={this.onChange} />
-                {filteredNotes.map(e => {
-                    return (
+                {filteredNotes.map(e => 
                         <Card key={e._id} onClick={() => {
                             this.props.choseNote(e._id)
                             this.props.history.push(`/notes/${e._id}`)
@@ -30,8 +29,7 @@ class NoteList extends Component {
                                 <CardText>{e.body}</CardText>
                             </CardBody>
                         </Card>
-                    );
-                })}
+                    )}
             </div >
         );
     }
