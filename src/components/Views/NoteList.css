@@ -47,11 +47,16 @@
     padding: 20px;
     padding-top: 40px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     flex-wrap: wrap;
     background-image: url('../../22237-grey-wallpapers-1920x1200-tablet.jpg');
     background-size: cover;
+    position: relative;
     /* background-image: linear-gradient(120deg, rgb(179, 174, 174) 0%, rgb(75, 66, 66) 40%); */
+}
+
+.add-below750 {
+    display: none;
 }
 
 #searchbox {
@@ -60,4 +65,16 @@
     top: 5px;
     font-size: 0.5rem;
     width: 10%;
+}
+
+@media(max-width: 750px) {
+    .card {
+        margin-bottom: 20px;
+    }
+    #searchbox {
+        display: none;
+    }
+    .notes-wrapper {
+        padding-top: 15px;
+    }
 }

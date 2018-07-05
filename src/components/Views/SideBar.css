@@ -45,3 +45,9 @@ a {
 .notes {
     margin-top: 15px;
 }
+
+@media(max-width: 750px) {
+    .sidebar {
+        display: none;
+    }
+}

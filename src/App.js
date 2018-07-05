@@ -24,6 +24,8 @@ class App extends Component {
         <Route exact path='/login' render={(props) => <Input {...props} login={this.login} page='login' />} />
         <Route exact path='/signup' render={(props) => <Input {...props} register={this.register} page='register' />} />
         <Route path='/(notes|note)' render={(props) => <Content {...props} loggedin={this.state.loggedin} logout={this.logout} deleteNote={this.deleteNote} notes={this.state.notes} choseNote={this.displayNote} note={this.state.note} cloneNote={this.cloneNote} saveNote={this.saveNote} updateNote={this.updateNote} />} />
+        <button className='addNote-below750' onClick={() => this.props.history.push('/note/create')}>+</button>
+        <button className='logout-below750' onClick={this.logout} ><i className="fas fa-door-open"></i></button>
       </div>
     );
   }
@@ -55,6 +57,7 @@ class App extends Component {
         localStorage.setItem('userid', data.data.userid)
         this.props.history.push('/notes')
       })
+      .catch(err => console.log(err.message))
   }
 
   loggedin = () => {

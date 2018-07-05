@@ -18,18 +18,18 @@ class NoteList extends Component {
         const filteredNotes = this.props.notes.filter(e => regex.test(e.title) || regex.test(e.body))
         return (
             <div className='notes-wrapper' >
-                <input id='searchbox' type="text" placeholder='Looking for something?' value={this.state.searchterm} onChange={this.onChange} />
-                {filteredNotes.map(e => 
-                        <Card key={e._id} onClick={() => {
-                            this.props.choseNote(e._id)
-                            this.props.history.push(`/notes/${e._id}`)
-                        }}>
-                            <CardBody>
-                                <h6 className='card-title'>{e.title}</h6>
-                                <CardText>{e.body}</CardText>
-                            </CardBody>
-                        </Card>
-                    )}
+                <input id='searchbox' type="text" placeholder='Search!' value={this.state.searchterm} onChange={this.onChange} />
+                {filteredNotes.map(e =>
+                    <Card key={e._id} onClick={() => {
+                        this.props.choseNote(e._id)
+                        this.props.history.push(`/notes/${e._id}`)
+                    }}>
+                        <CardBody>
+                            <h6 className='card-title'>{e.title}</h6>
+                            <CardText>{e.body}</CardText>
+                        </CardBody>
+                    </Card>
+                )}
             </div >
         );
     }
